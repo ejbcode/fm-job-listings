@@ -1,9 +1,10 @@
 import React from "react";
+import ListOfCards from "./ListOfCards";
 
 const Main = () => {
   return (
     <div>
-      <p>hola main</p>
+      <ListOfCards />
     </div>
   );
 };
