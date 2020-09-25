@@ -7,7 +7,7 @@ const HeaderStyled = styled.div`
   position: relative;
   height: 15rem;
   background-repeat: no-repeat;
-  background-image: url("https://raw.githubusercontent.com/ejbcode/fm-job-listings/master/src/images/bg-header-mobile.svg");
+  background-image: url(".images/bg-header-mobile.svg");
   background-size: cover;
   background-repeat: repeat-x;
 
@@ -39,7 +39,7 @@ const HeaderStyled = styled.div`
 
   @media (min-width: 376px) {
     height: 7rem;
-    background-image: url("https://raw.githubusercontent.com/ejbcode/fm-job-listings/master/src/images/bg-header-desktop.svg");
+    background-image: url("./images/bg-header-desktop.svg");
   }
 `;
 

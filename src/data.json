@@ -2,7 +2,7 @@
   {
     "id": 1,
     "company": "Photosnap",
-    "logo": "./images/photosnap.svg",
+    "logo": "../images/photosnap.svg",
     "new": true,
     "featured": true,
     "position": "Senior Frontend Developer",
@@ -11,7 +11,7 @@
     "postedAt": "1d ago",
     "contract": "Full Time",
     "location": "USA Only",
-    "languages": ["HTML", "CSS", "JavaScript"],
+    "languages": ["XHTML", "CSS", "JavaScript"],
     "tools": []
   },
   {
