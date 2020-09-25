@@ -3,65 +3,95 @@ import styled from "@emotion/styled";
 
 const CardStyled = styled.article`
   max-width: 1200px;
+  padding: 2.5rem 0 2rem 0;
+
   width: 80%;
   margin: 0 auto;
+
   margin-top: 5rem;
   background: var(--white);
-  border-radius: 1rem;
-  /* border-left: 1rem solid var(--primary); */
+  border-radius: 0.49rem;
   border-left: ${(props) =>
-    props.featured ? "1rem solid var(--very-primary)" : "none"};
+    props.featured
+      ? "0.49rem solid var(--primary)"
+      : "0.49rem solid var(--white)"};
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 
   div {
   }
-  @media (min-width: 1000px) {
+  @media (min-width: 500px) {
     flex-direction: row;
   }
 `;
 
 const Logo = styled.img`
-  width: 58px;
-  height: auto;
-  margin: -30px 0 0 2rem;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: -22px;
+
   @media (min-width: 768px) {
     margin: 0;
+    position: initial;
+    margin: 0 2rem 0 1rem;
+
     display: inline-block;
-    border: red solid 1px;
+    width: 83px;
+    height: 83px;
   }
 `;
 
 const Description = styled.div`
-  flex: 1 1 0;
-  margin: 0 2rem;
-  align-self: center;
+  flex: 1 1 1;
+  margin: 0.6rem 0rem 0.6rem 2rem;
+  display: flex;
+  border: red solid 1px;
 
   h4 {
     display: inline-block;
-    margin-right: 2rem;
+    font-size: 1.2rem;
+    margin-right: 1.5rem;
   }
   h3 {
+    font-size: 1.4rem;
+    margin: 1rem 0 0.8rem 0;
     color: var(--very-dark);
+  }
+  @media (min-width: 800px) {
+    h4 {
+      font-size: 1.4rem;
+    }
+    h3 {
+      font-size: 1.6rem;
+    }
   }
 `;
 
 const SubDescription = styled.div`
+  span {
+    font-size: 1.2rem;
+    color: var(--dark-grayish);
+  }
+
   @media (min-width: 800px) {
     display: inline-block;
-
-    border: blue solid 1px;
+    span {
+      font-size: 1.4rem;
+    }
   }
 `;
 
 const Skills = styled.div`
   border-top: gray solid 1px;
-  align-self: center;
   flex: 1 1 0;
   margin: 0 2rem;
-  align-items: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+
   ul {
     list-style: none;
     display: flex;
@@ -69,13 +99,17 @@ const Skills = styled.div`
   }
   li {
     background-color: var(--background);
-    padding: 0.5rem 1rem;
-    margin: 1rem 1rem 1rem 0;
+    padding: 0.5rem 0.5rem;
+    margin: 1rem 1.4rem 0.3rem 0;
     border-radius: 3px;
-    font-weight: 700;
   }
-  @media (min-width: 1000px) {
+  @media (min-width: 800px) {
     border: none;
+    align-self: center;
+
+    ul {
+      justify-content: flex-end;
+    }
   }
 `;
 
@@ -86,10 +120,10 @@ const Pills = styled.p`
   background-color: ${(props) =>
     props.featured ? "var(--very-dark)" : "var(--primary)"};
 
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1.4rem;
-  margin-right: 1rem;
+  border-radius: 1.5rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 1rem;
+  margin-right: 0.8rem;
 `;
 
 const Card = ({ job }) => {
@@ -104,12 +138,12 @@ const Card = ({ job }) => {
           <div>
             <h4>{job.company}</h4>
             {job.new ? <Pills> NEW!</Pills> : null}
-            {job.featured ? <Pills featured> FEATURED!</Pills> : null}
+            {job.featured ? <Pills featured> FEATURED</Pills> : null}
             <h3>{job.position}</h3>
           </div>
-          <div>
-            {job.postedAt} *{job.contract} *{job.location}
-          </div>
+          <span>
+            {job.postedAt} • {job.contract} • {job.location}
+          </span>
         </SubDescription>
       </Description>
       <Skills>
