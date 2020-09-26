@@ -4,38 +4,11 @@ import styled from "@emotion/styled";
 const HeaderStyled = styled.div`
   width: 100%;
   background-color: var(--primary);
-  position: relative;
   height: 15rem;
   background-repeat: no-repeat;
-  background-image: url(".images/bg-header-mobile.svg");
+  background-image: url("./images/bg-header-mobile.svg");
   background-size: cover;
   background-repeat: repeat-x;
-
-  .filter-container {
-    background-color: red;
-    width: 80%;
-    max-width: 1200px;
-    position: absolute;
-    top: calc(100% - 2rem);
-    margin: 0 auto;
-    left: 0;
-    border-radius: 0.5rem;
-    right: 0;
-    background: var(--light);
-    box-shadow: 0 10px 38px rgba(0, 0, 0, 0.3), 0 10px 12px rgba(0, 0, 0, 0.22);
-    ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    li {
-      background-color: var(--background);
-      padding: 0.5rem 1rem;
-      margin: 1rem;
-      border-radius: 3px;
-      font-weight: 700;
-    }
-  }
 
   @media (min-width: 376px) {
     height: 7rem;
@@ -43,17 +16,81 @@ const HeaderStyled = styled.div`
   }
 `;
 
-const Header = () => {
+const Filter = styled.div`
+  width: 80%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+  margin-top: -2.5rem;
+  left: 0;
+  border-radius: 0.5rem;
+  background: var(--white);
+  box-shadow: 0 10px 38px rgba(0, 0, 0, 0.3), 0 10px 12px rgba(0, 0, 0, 0.22);
+  font-weight: 700;
+  font-size: 1.2rem;
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+  }
+  li {
+    padding: 0.5rem 0.5rem;
+    border-radius: 3px 0 0 3px;
+    display: inline-block;
+    border-radius: 3px;
+    background-color: var(--light);
+    margin: 0.6rem 0.6rem;
+    overflow: hidden;
+  }
+
+  p {
+    text-decoration: none;
+    color: var(--primary);
+  }
+  span {
+    background: var(--primary);
+    padding: 8px;
+    margin-left: 8px;
+    margin-right: -5px;
+  }
+
+  span:hover {
+    background: var(--very-dark);
+    cursor: pointer;
+  }
+  img {
+    width: auto;
+    width: 12px;
+
+    display: inline-block;
+  }
+`;
+
+const Header = ({ arrayFiltered, setArrayFiltered }) => {
+  console.log(arrayFiltered);
+  const handleClick = (array) => {
+    setArrayFiltered(arrayFiltered.filter((item) => item !== array));
+  };
+
   return (
-    <HeaderStyled>
-      <div className="filter-container">
+    <>
+      <HeaderStyled></HeaderStyled>
+      <Filter>
         <ul>
-          <li>Fronteed</li>
-          <li>Javascritp</li>
-          <li>Backend</li>
+          {arrayFiltered.map((arrayF) => (
+            <li key={arrayF}>
+              <p>
+                {arrayF}
+                <span onClick={() => handleClick(arrayF)}>
+                  <img src="./images/icon-remove.svg" alt="" />
+                </span>
+              </p>
+            </li>
+          ))}
         </ul>
-      </div>
-    </HeaderStyled>
+      </Filter>
+    </>
   );
 };
 

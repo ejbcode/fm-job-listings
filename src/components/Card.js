@@ -4,26 +4,23 @@ import styled from "@emotion/styled";
 const CardStyled = styled.article`
   max-width: 1200px;
   padding: 2.5rem 0 2rem 0;
-
   width: 80%;
-  margin: 0 auto;
-
+  margin: 4px auto -16px auto;
   margin-top: 5rem;
-  background: var(--white);
   border-radius: 0.49rem;
   border-left: ${(props) =>
     props.featured
       ? "0.49rem solid var(--primary)"
       : "0.49rem solid var(--white)"};
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
   div {
   }
-  @media (min-width: 500px) {
+  @media (min-width: 768px) {
     flex-direction: row;
   }
 `;
@@ -49,7 +46,6 @@ const Description = styled.div`
   flex: 1 1 1;
   margin: 0.6rem 0rem 0.6rem 2rem;
   display: flex;
-  border: red solid 1px;
 
   h4 {
     display: inline-block;
@@ -61,7 +57,7 @@ const Description = styled.div`
     margin: 1rem 0 0.8rem 0;
     color: var(--very-dark);
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     h4 {
       font-size: 1.4rem;
     }
@@ -77,7 +73,7 @@ const SubDescription = styled.div`
     color: var(--dark-grayish);
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     display: inline-block;
     span {
       font-size: 1.4rem;
@@ -103,7 +99,7 @@ const Skills = styled.div`
     margin: 1rem 1.4rem 0.3rem 0;
     border-radius: 3px;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     border: none;
     align-self: center;
 
@@ -126,10 +122,11 @@ const Pills = styled.p`
   margin-right: 0.8rem;
 `;
 
-const Card = ({ job }) => {
-  console.log(job);
+const Card = ({ job, setArrayFiltered }) => {
   const combined = [job.role, job.level, ...job.languages, ...job.tools];
-  console.log(combined);
+  const handleClick = (comb) => {
+    setArrayFiltered((arrayFiltered) => [comb, ...arrayFiltered]);
+  };
   return (
     <CardStyled featured>
       <Description>
@@ -149,7 +146,9 @@ const Card = ({ job }) => {
       <Skills>
         <ul>
           {combined.map((comb) => (
-            <li key={comb}>{comb}</li>
+            <li key={comb} onClick={() => handleClick(comb)}>
+              {comb}
+            </li>
           ))}
         </ul>
       </Skills>

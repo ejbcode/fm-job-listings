@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import { Global, css } from "@emotion/core";
 
 const layout = ({ children }) => {
@@ -42,9 +40,8 @@ const layout = ({ children }) => {
           }
         `}
       />
-      <Header />
+
       {children}
-      <Footer />
     </>
   );
 };
