@@ -19,7 +19,7 @@ const HeaderStyled = styled.div`
 const Filter = styled.div`
   width: 80%;
   max-width: 1200px;
-
+  min-width: 250px;
   margin: 0 auto;
   margin-top: -2.5rem;
   left: 0;
@@ -29,6 +29,26 @@ const Filter = styled.div`
   font-weight: 700;
   font-size: 1.2rem;
   display: flex;
+  transition: all 0.3s;
+  animation: 0.5s ease-in-out showFilter;
+
+  @keyframes showFilter {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: translateX(5%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
   ul {
     list-style: none;
     display: flex;

@@ -5,6 +5,7 @@ const CardStyled = styled.article`
   background-color: var(--white);
 
   max-width: 1200px;
+  min-width: 250px;
   padding: 2.5rem 0 2rem 0;
   width: 80%;
   margin: 4px auto -16px auto;

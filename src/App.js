@@ -20,7 +20,7 @@ const jobsNew = jobs.map((job) => {
 });
 
 function App() {
-  const [arrayFiltered, setArrayFiltered] = useState(["CSS"]);
+  const [arrayFiltered, setArrayFiltered] = useState([]);
   return (
     <Layout>
       <Header
