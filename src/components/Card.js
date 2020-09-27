@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const CardStyled = styled.article`
+  background-color: var(--white);
+
   max-width: 1200px;
   padding: 2.5rem 0 2rem 0;
   width: 80%;
@@ -95,9 +97,15 @@ const Skills = styled.div`
   }
   li {
     background-color: var(--background);
+
     padding: 0.5rem 0.5rem;
     margin: 1rem 1.4rem 0.3rem 0;
     border-radius: 3px;
+    :hover {
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+    }
   }
   @media (min-width: 768px) {
     border: none;
@@ -122,13 +130,13 @@ const Pills = styled.p`
   margin-right: 0.8rem;
 `;
 
-const Card = ({ job, setArrayFiltered }) => {
-  const combined = [job.role, job.level, ...job.languages, ...job.tools];
+const Card = ({ job, arrayFiltered, setArrayFiltered }) => {
   const handleClick = (comb) => {
+    if (arrayFiltered && arrayFiltered.includes(comb)) return;
     setArrayFiltered((arrayFiltered) => [comb, ...arrayFiltered]);
   };
   return (
-    <CardStyled featured>
+    <CardStyled featured={job.featured}>
       <Description>
         <Logo src={job.logo} alt="" />
         <SubDescription>
@@ -145,7 +153,7 @@ const Card = ({ job, setArrayFiltered }) => {
       </Description>
       <Skills>
         <ul>
-          {combined.map((comb) => (
+          {job.combined.map((comb) => (
             <li key={comb} onClick={() => handleClick(comb)}>
               {comb}
             </li>

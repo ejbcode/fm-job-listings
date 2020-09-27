@@ -28,11 +28,13 @@ const Filter = styled.div`
   box-shadow: 0 10px 38px rgba(0, 0, 0, 0.3), 0 10px 12px rgba(0, 0, 0, 0.22);
   font-weight: 700;
   font-size: 1.2rem;
+  display: flex;
   ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     padding: 1rem 2rem;
+    flex: 1 1 auto;
   }
   li {
     padding: 0.5rem 0.5rem;
@@ -67,29 +69,44 @@ const Filter = styled.div`
   }
 `;
 
+const ClearButton = styled.p`
+  margin-right: 1rem;
+  background: none;
+  height: 100%;
+  align-self: center;
+  cursor: pointer;
+  color: grey !important;
+`;
+
 const Header = ({ arrayFiltered, setArrayFiltered }) => {
-  console.log(arrayFiltered);
   const handleClick = (array) => {
     setArrayFiltered(arrayFiltered.filter((item) => item !== array));
+  };
+
+  const handleDelete = () => {
+    setArrayFiltered([]);
   };
 
   return (
     <>
       <HeaderStyled></HeaderStyled>
-      <Filter>
-        <ul>
-          {arrayFiltered.map((arrayF) => (
-            <li key={arrayF}>
-              <p>
-                {arrayF}
-                <span onClick={() => handleClick(arrayF)}>
-                  <img src="./images/icon-remove.svg" alt="" />
-                </span>
-              </p>
-            </li>
-          ))}
-        </ul>
-      </Filter>
+      {arrayFiltered.length === 0 ? null : (
+        <Filter>
+          <ul>
+            {arrayFiltered.map((arrayF) => (
+              <li key={arrayF}>
+                <p>
+                  {arrayF}
+                  <span onClick={() => handleClick(arrayF)}>
+                    <img src="./images/icon-remove.svg" alt="" />
+                  </span>
+                </p>
+              </li>
+            ))}
+          </ul>
+          <ClearButton onClick={handleDelete}>Clear</ClearButton>
+        </Filter>
+      )}
     </>
   );
 };
